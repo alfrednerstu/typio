@@ -1,10 +1,12 @@
 <script lang="ts">
-  import { renderMarkdown } from './markdown.ts';
+  import { renderMarkdown, extractHeadings } from './markdown.ts';
   import type { FileContent } from './tauri.ts';
+  import Minimap from './Minimap.svelte';
 
   let { file, onNavigateWikilink }: { file: FileContent; onNavigateWikilink: (target: string) => void } = $props();
 
   let renderedHtml = $derived(file ? renderMarkdown(file.raw) : '');
+  let headings = $derived(file ? extractHeadings(file.raw) : []);
 
   // Tags from frontmatter
   let tags = $derived(() => {
@@ -29,6 +31,7 @@
   }
 </script>
 
+<div class="reader-layout">
 <article class="reader">
   {#if file.frontmatter && Object.keys(file.frontmatter).length > 0}
     <div class="frontmatter">
@@ -62,7 +65,18 @@
   </div>
 </article>
 
+{#if headings.length > 1}
+  <Minimap {headings} />
+{/if}
+</div>
+
 <style>
+  .reader-layout {
+    display: flex;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
   .reader {
     max-width: 720px;
     margin: 0 auto;
