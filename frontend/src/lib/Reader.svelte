@@ -15,12 +15,16 @@
     return [];
   });
 
-  function handleClick(e) {
-    const link = e.target.closest('a.wikilink');
+  function handleClick(e: MouseEvent) {
+    const link = (e.target as HTMLElement).closest('a.wikilink') as HTMLAnchorElement | null;
     if (link) {
       e.preventDefault();
-      const target = decodeURIComponent(link.dataset.target);
-      onNavigateWikilink(target);
+      const href = link.getAttribute('href') || '';
+      const prefix = '#wikilink/';
+      if (href.startsWith(prefix)) {
+        const target = decodeURIComponent(href.slice(prefix.length));
+        onNavigateWikilink(target);
+      }
     }
   }
 </script>
