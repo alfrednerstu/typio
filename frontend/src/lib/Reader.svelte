@@ -143,8 +143,8 @@
   /* Prose styles for rendered markdown */
   .prose {
     font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--text);
   }
 
