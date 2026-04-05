@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicknisi/tauri/refs/heads/next/.schema/config.schema.json",
+  "productName": "Typio",
+  "version": "0.1.0",
+  "identifier": "app.typio",
+  "build": {
+    "frontendDist": "../frontend/dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "cd ../frontend && npm run dev",
+    "beforeBuildCommand": "cd ../frontend && npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Typio",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "plugins": {
+    "dialog": {}
+  }
+}

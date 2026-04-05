@@ -1,0 +1,29 @@
+[package]
+name = "typio"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "typio_lib"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[[bin]]
+name = "typio"
+path = "src/main.rs"
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+walkdir = "2"
+notify = { version = "7", features = ["macos_fsevent"] }
+regex = "1"
+tokio = { version = "1", features = ["full"] }
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
