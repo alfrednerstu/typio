@@ -1,6 +1,7 @@
-<script>
-  import { state } from './lib/store.svelte.js';
-  import { openFolder, scanFolder, readFile, searchFiles, getBacklinks, watchFolder } from './lib/tauri.js';
+<script lang="ts">
+  import { state } from './lib/store.svelte.ts';
+  import { openFolder, scanFolder, readFile, searchFiles, getBacklinks, watchFolder } from './lib/tauri.ts';
+  import type { FileEntry } from './lib/tauri.ts';
   import { listen } from '@tauri-apps/api/event';
   import { open } from '@tauri-apps/plugin-dialog';
   import Sidebar from './lib/Sidebar.svelte';

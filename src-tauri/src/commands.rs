@@ -11,8 +11,29 @@ use walkdir::WalkDir;
 pub struct FileEntry {
     pub path: String,
     pub name: String,
+    pub display_name: String,
     pub is_dir: bool,
     pub children: Vec<FileEntry>,
+}
+
+/// Title-case a filename for display.
+/// e.g. "log.md" → "Log", "CLAUDE.md" → "Claude", "my-notes.md" → "My Notes"
+fn title_case_name(filename: &str) -> String {
+    let stem = filename.strip_suffix(".md").unwrap_or(filename);
+    stem.split(|c: char| c == '-' || c == '_')
+        .filter(|s| !s.is_empty())
+        .map(|word| {
+            let mut chars = word.chars();
+            match chars.next() {
+                Some(c) => {
+                    let upper: String = c.to_uppercase().collect();
+                    upper + &chars.as_str().to_lowercase()
+                }
+                None => String::new(),
+            }
+        })
+        .collect::<Vec<_>>()
+        .join(" ")
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -68,21 +89,15 @@ pub fn scan_folder(path: String) -> Result<Vec<FileEntry>, String> {
         return Err(format!("Path does not exist: {}", path));
     }
 
-    fn build_tree(dir: &Path, root: &Path) -> Vec<FileEntry> {
-        let mut entries: Vec<FileEntry> = Vec::new();
+    fn build_tree(dir: &Path, _root: &Path) -> Vec<FileEntry> {
+        let mut dirs: Vec<FileEntry> = Vec::new();
+        let mut files: Vec<FileEntry> = Vec::new();
+        let mut index_entry: Option<FileEntry> = None;
 
-        let mut items: Vec<_> = match std::fs::read_dir(dir) {
+        let items: Vec<_> = match std::fs::read_dir(dir) {
             Ok(rd) => rd.filter_map(|e| e.ok()).collect(),
-            Err(_) => return entries,
+            Err(_) => return Vec::new(),
         };
-
-        items.sort_by(|a, b| {
-            let a_is_dir = a.file_type().map(|ft| ft.is_dir()).unwrap_or(false);
-            let b_is_dir = b.file_type().map(|ft| ft.is_dir()).unwrap_or(false);
-            b_is_dir
-                .cmp(&a_is_dir)
-                .then(a.file_name().cmp(&b.file_name()))
-        });
 
         for item in items {
             let item_path = item.path();
@@ -94,26 +109,51 @@ pub fn scan_folder(path: String) -> Result<Vec<FileEntry>, String> {
             }
 
             if item_path.is_dir() {
-                let children = build_tree(&item_path, root);
+                let children = build_tree(&item_path, _root);
                 // Only include dirs that contain .md files (directly or nested)
                 if !children.is_empty() {
-                    entries.push(FileEntry {
+                    dirs.push(FileEntry {
                         path: item_path.to_string_lossy().to_string(),
+                        display_name: title_case_name(&name),
                         name,
                         is_dir: true,
                         children,
                     });
                 }
             } else if item_path.extension().map(|e| e == "md").unwrap_or(false) {
-                entries.push(FileEntry {
+                let display_name = if name.to_lowercase() == "index.md" {
+                    "Index".to_string()
+                } else {
+                    title_case_name(&name)
+                };
+
+                let entry = FileEntry {
                     path: item_path.to_string_lossy().to_string(),
-                    name,
+                    display_name,
+                    name: name.clone(),
                     is_dir: false,
                     children: vec![],
-                });
+                };
+
+                if name.to_lowercase() == "index.md" {
+                    index_entry = Some(entry);
+                } else {
+                    files.push(entry);
+                }
             }
         }
 
+        // Sort: folders A-Z, then files A-Z
+        dirs.sort_by(|a, b| a.name.to_lowercase().cmp(&b.name.to_lowercase()));
+        files.sort_by(|a, b| a.name.to_lowercase().cmp(&b.name.to_lowercase()));
+
+        // Final order: index.md pinned at top, then folders, then files
+        let mut entries = Vec::new();
+        if let Some(idx) = index_entry {
+            entries.push(idx);
+        }
+        entries.extend(dirs);
+        entries.extend(files);
         entries
     }
 

@@ -101,7 +101,7 @@
       <svg class="tree-icon" class:expanded={expandedDirs.has(entry.path)} width="12" height="12" viewBox="0 0 12 12">
         <path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
       </svg>
-      <span class="tree-name">{entry.name}</span>
+      <span class="tree-name">{entry.display_name}</span>
     </button>
     {#if expandedDirs.has(entry.path)}
       {#each entry.children as child}
@@ -115,7 +115,7 @@
       style="padding-left: {12 + depth * 16 + 16}px"
       onclick={() => onSelectFile(entry.path)}
     >
-      <span class="tree-name">{entry.name}</span>
+      <span class="tree-name">{entry.display_name}</span>
     </button>
   {/if}
 {/snippet}

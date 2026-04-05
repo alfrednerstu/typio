@@ -1,7 +1,8 @@
-<script>
-  import { renderMarkdown } from './markdown.js';
+<script lang="ts">
+  import { renderMarkdown } from './markdown.ts';
+  import type { FileContent } from './tauri.ts';
 
-  let { file, onNavigateWikilink } = $props();
+  let { file, onNavigateWikilink }: { file: FileContent; onNavigateWikilink: (target: string) => void } = $props();
 
   let renderedHtml = $derived(file ? renderMarkdown(file.raw) : '');
 
