@@ -10,9 +10,9 @@
   --accent: #7c3aed;
   --accent-light: #ede9fe;
   --link: #6d28d9;
-  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --font-serif: ui-serif, serif;
-  --font-mono: ui-monospace, Menlo, 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --font-sans: ui-sans-serif, Inter, sans-serif;
+  --font-serif: ui-serif, 'Palatino Linotype', Palatino, serif;
+  --font-mono: ui-monospace, Menlo, monospace;
   --sidebar-width: 280px;
   --backlinks-width: 260px;
 }
