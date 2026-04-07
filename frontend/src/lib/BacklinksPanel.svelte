@@ -37,9 +37,9 @@
   .backlinks-header {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 16px 16px 12px;
-    font-size: 12px;
+    gap: 0.375rem;
+    padding: 1rem 1rem 0.75rem;
+    font-size: var(--text-sm);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -50,25 +50,25 @@
   .count {
     background: var(--accent-light);
     color: var(--accent);
-    padding: 1px 7px;
-    border-radius: 10px;
-    font-size: 11px;
+    padding: 0.0625rem 0.4375rem;
+    border-radius: 0.625rem;
+    font-size: var(--text-xs);
   }
 
   .backlinks-list {
     overflow-y: auto;
     flex: 1;
-    padding: 0 8px 8px;
+    padding: 0 0.5rem 0.5rem;
   }
 
   .backlink-item {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
+    gap: 0.25rem;
     width: 100%;
-    padding: 8px 10px;
-    border-radius: 6px;
+    padding: 0.5rem 0.625rem;
+    border-radius: 0.375rem;
     text-align: left;
     transition: background 0.1s;
   }
@@ -78,13 +78,13 @@
   }
 
   .backlink-name {
-    font-size: 13px;
+    font-size: var(--text-base);
     font-weight: 500;
     color: var(--accent);
   }
 
   .backlink-context {
-    font-size: 12px;
+    font-size: var(--text-sm);
     color: var(--text-secondary);
     line-height: 1.4;
     display: -webkit-box;

@@ -73,50 +73,50 @@
 <style>
   .reader-layout {
     display: flex;
-    max-width: 960px;
+    max-width: 60rem;
     margin: 0 auto;
   }
 
   .reader {
-    max-width: 720px;
+    max-width: 45rem;
     margin: 0 auto;
-    padding: 48px 32px 96px;
+    padding: 3rem 2rem 6rem;
   }
 
   .frontmatter {
-    margin-bottom: 32px;
-    padding-bottom: 24px;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--border);
   }
 
   .page-title {
     font-family: var(--font-serif);
-    font-size: 36px;
+    font-size: var(--text-5xl);
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.02em;
     color: var(--text);
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
   }
 
   .meta-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 8px;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .meta-item {
-    font-size: 13px;
+    font-size: var(--text-base);
   }
 
   .meta-key {
     color: var(--text-muted);
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: var(--text-xs);
     font-weight: 600;
     letter-spacing: 0.05em;
-    margin-right: 6px;
+    margin-right: 0.375rem;
   }
 
   .meta-value {
@@ -126,173 +126,17 @@
   .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 8px;
+    gap: 0.375rem;
+    margin-top: 0.5rem;
   }
 
   .tag {
     display: inline-block;
-    padding: 2px 10px;
-    border-radius: 12px;
+    padding: 0.125rem 0.625rem;
+    border-radius: 0.75rem;
     background: var(--accent-light);
     color: var(--accent);
-    font-size: 12px;
+    font-size: var(--text-sm);
     font-weight: 500;
-  }
-
-  /* Prose styles for rendered markdown */
-  .prose {
-    font-family: var(--font-serif);
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--text);
-  }
-
-  .prose :global(h1) {
-    font-family: var(--font-serif);
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin: 48px 0 16px;
-    letter-spacing: -0.02em;
-  }
-
-  .prose :global(h2) {
-    font-family: var(--font-serif);
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.3;
-    margin: 40px 0 12px;
-    letter-spacing: -0.01em;
-  }
-
-  .prose :global(h3) {
-    font-family: var(--font-sans);
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 32px 0 8px;
-  }
-
-  .prose :global(h4),
-  .prose :global(h5),
-  .prose :global(h6) {
-    font-family: var(--font-sans);
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 24px 0 8px;
-    color: var(--text-secondary);
-  }
-
-  .prose :global(p) {
-    margin: 0 0 16px;
-  }
-
-  .prose :global(a) {
-    color: var(--link);
-    text-decoration: underline;
-    text-decoration-color: rgba(109, 40, 217, 0.3);
-    text-underline-offset: 2px;
-    transition: text-decoration-color 0.15s;
-  }
-
-  .prose :global(a:hover) {
-    text-decoration-color: var(--link);
-  }
-
-  .prose :global(a.wikilink) {
-    color: var(--accent);
-    text-decoration: none;
-    background: var(--accent-light);
-    padding: 1px 6px;
-    border-radius: 4px;
-    font-family: var(--font-sans);
-    font-size: 15px;
-    transition: background 0.15s;
-  }
-
-  .prose :global(a.wikilink:hover) {
-    background: #ddd6fe;
-  }
-
-  .prose :global(ul),
-  .prose :global(ol) {
-    margin: 0 0 16px;
-    padding-left: 24px;
-  }
-
-  .prose :global(li) {
-    margin-bottom: 4px;
-  }
-
-  .prose :global(blockquote) {
-    border-left: 3px solid var(--accent);
-    margin: 0 0 16px;
-    padding: 8px 16px;
-    color: var(--text-secondary);
-    background: var(--accent-light);
-    border-radius: 0 6px 6px 0;
-  }
-
-  .prose :global(code) {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    background: #f0eeeb;
-    padding: 2px 6px;
-    border-radius: 4px;
-    color: var(--text);
-  }
-
-  .prose :global(pre) {
-    background: #1e1e2e;
-    color: #cdd6f4;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 0 0 16px;
-    overflow-x: auto;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .prose :global(pre code) {
-    background: none;
-    padding: 0;
-    border-radius: 0;
-    color: inherit;
-    font-size: inherit;
-  }
-
-  .prose :global(hr) {
-    border: none;
-    height: 1px;
-    background: var(--border);
-    margin: 32px 0;
-  }
-
-  .prose :global(table) {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 0 16px;
-    font-family: var(--font-sans);
-    font-size: 14px;
-  }
-
-  .prose :global(th),
-  .prose :global(td) {
-    border: 1px solid var(--border);
-    padding: 8px 12px;
-    text-align: left;
-  }
-
-  .prose :global(th) {
-    background: var(--bg-sidebar);
-    font-weight: 600;
-  }
-
-  .prose :global(img) {
-    max-width: 100%;
-    border-radius: 8px;
-    margin: 8px 0;
   }
 </style>

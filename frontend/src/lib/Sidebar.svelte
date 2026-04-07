@@ -95,7 +95,7 @@
   {#if entry.is_dir}
     <button
       class="tree-item dir"
-      style="padding-left: {12 + depth * 16}px"
+      style="padding-left: {0.75 + depth * 1}rem"
       onclick={() => onToggleDir(entry.path)}
     >
       <svg class="tree-icon" class:expanded={expandedDirs.has(entry.path)} width="12" height="12" viewBox="0 0 12 12">
@@ -112,7 +112,7 @@
     <button
       class="tree-item file"
       class:active={currentFilePath === entry.path}
-      style="padding-left: {12 + depth * 16 + 16}px"
+      style="padding-left: {0.75 + depth * 1 + 1}rem"
       onclick={() => onSelectFile(entry.path)}
     >
       <span class="tree-name">{entry.display_name}</span>
@@ -133,7 +133,7 @@
   }
 
   .sidebar-header {
-    padding: 16px 12px 0;
+    padding: 1rem 0.75rem 0;
     flex-shrink: 0;
   }
 
@@ -141,23 +141,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
   }
 
   .logo-text {
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--text-xl);
     letter-spacing: -0.02em;
     color: var(--accent);
   }
 
   .open-btn {
-    width: 28px;
-    height: 28px;
+    width: 1.75rem;
+    height: 1.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
+    border-radius: 0.375rem;
     color: var(--text-secondary);
     transition: background 0.15s, color 0.15s;
   }
@@ -169,18 +169,18 @@
 
   .sidebar-tabs {
     display: flex;
-    gap: 2px;
+    gap: 0.125rem;
     background: var(--bg-hover);
-    border-radius: 6px;
-    padding: 2px;
-    margin-bottom: 8px;
+    border-radius: 0.375rem;
+    padding: 0.125rem;
+    margin-bottom: 0.5rem;
   }
 
   .tab {
     flex: 1;
-    padding: 5px 8px;
-    border-radius: 4px;
-    font-size: 12px;
+    padding: 0.3125rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: var(--text-sm);
     font-weight: 500;
     color: var(--text-secondary);
     transition: all 0.15s;
@@ -189,43 +189,43 @@
   .tab.active {
     background: var(--bg);
     color: var(--text);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    box-shadow: 0 0.0625rem 0.125rem rgba(0,0,0,0.06);
   }
 
   .search-box {
-    padding: 0 12px 8px;
+    padding: 0 0.75rem 0.5rem;
     position: relative;
     flex-shrink: 0;
   }
 
   .search-icon {
     position: absolute;
-    left: 22px;
+    left: 1.375rem;
     top: 50%;
-    transform: translateY(-calc(50% + 4px));
+    transform: translateY(-calc(50% + 0.25rem));
     color: var(--text-muted);
     pointer-events: none;
-    margin-top: -4px;
+    margin-top: -0.25rem;
   }
 
   .search-box input {
     width: 100%;
-    padding: 7px 8px 7px 30px;
+    padding: 0.4375rem 0.5rem 0.4375rem 1.875rem;
     background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 6px;
-    font-size: 13px;
+    border-radius: 0.375rem;
+    font-size: var(--text-base);
   }
 
   .search-box input:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px var(--accent-light);
+    box-shadow: 0 0 0 0.125rem var(--accent-light);
   }
 
   .search-results {
     overflow-y: auto;
     flex: 1;
-    padding: 0 4px;
+    padding: 0 0.25rem;
   }
 
   .search-result {
@@ -233,10 +233,10 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    padding: 8px 10px;
-    border-radius: 4px;
+    padding: 0.5rem 0.625rem;
+    border-radius: 0.25rem;
     text-align: left;
-    gap: 2px;
+    gap: 0.125rem;
     transition: background 0.1s;
   }
 
@@ -246,17 +246,17 @@
 
   .result-name {
     font-weight: 500;
-    font-size: 13px;
+    font-size: var(--text-base);
     color: var(--text);
   }
 
   .result-line {
-    font-size: 11px;
+    font-size: var(--text-xs);
     color: var(--text-muted);
   }
 
   .result-context {
-    font-size: 12px;
+    font-size: var(--text-sm);
     color: var(--text-secondary);
     white-space: nowrap;
     overflow: hidden;
@@ -265,26 +265,26 @@
   }
 
   .no-results {
-    padding: 24px 12px;
+    padding: 1.5rem 0.75rem;
     text-align: center;
     color: var(--text-muted);
-    font-size: 13px;
+    font-size: var(--text-base);
   }
 
   .file-tree {
     overflow-y: auto;
     flex: 1;
-    padding: 4px;
+    padding: 0.25rem;
   }
 
   .tree-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 0.375rem;
     width: 100%;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 13px;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: var(--text-base);
     text-align: left;
     transition: background 0.1s;
     white-space: nowrap;

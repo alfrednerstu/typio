@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: 48px;
+    padding: 3rem;
   }
 
   .welcome-content {
@@ -36,35 +36,35 @@
 
   .welcome-title {
     font-family: var(--font-serif);
-    font-size: 48px;
+    font-size: var(--text-6xl);
     font-weight: 700;
     color: var(--accent);
     letter-spacing: -0.03em;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
 
   .welcome-subtitle {
-    font-size: 18px;
+    font-size: var(--text-2xl);
     color: var(--text-secondary);
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
   }
 
   .open-folder-btn {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 28px;
+    gap: 0.625rem;
+    padding: 0.75rem 1.75rem;
     background: var(--accent);
     color: white;
-    border-radius: 10px;
-    font-size: 15px;
+    border-radius: 0.625rem;
+    font-size: var(--text-lg);
     font-weight: 500;
     transition: opacity 0.15s, transform 0.15s;
   }
 
   .open-folder-btn:hover {
     opacity: 0.9;
-    transform: translateY(-1px);
+    transform: translateY(-0.0625rem);
   }
 
   .open-folder-btn:active {
@@ -72,8 +72,8 @@
   }
 
   .welcome-hint {
-    font-size: 14px;
+    font-size: var(--text-md);
     color: var(--text-muted);
-    margin-top: 16px;
+    margin-top: 1rem;
   }
 </style>
